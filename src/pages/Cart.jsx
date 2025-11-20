@@ -22,7 +22,7 @@ const Cart = ({location, getLocation}) => {
 
 
   return (
-    <div className='mt-10 max-w-6xl mx-auto mb-5'>
+    <div className='mt-10 max-w-6xl mx-auto mb-5 px-4 md:px-0'>
       {
         cartItem.length > 0 ? <div className="">
           <h1 className="">My Cart({cartItem.length})</h1>
@@ -33,7 +33,7 @@ const Cart = ({location, getLocation}) => {
                   <div className="flex items-center gap-4">
                     <img src={item.image} alt={item.title} className="w-20 h-20 rounded-md" />
                     <div className="">
-                      <h1 className="w-[300px] line-clamp-2">{item.title}</h1>
+                      <h1 className="md:w-[300px] line-clamp-2 ">{item.title}</h1>
                       <p className="text-red-500 font-semibold text-lg ">${item.price}</p>
                     </div>
                   </div>
@@ -48,7 +48,7 @@ const Cart = ({location, getLocation}) => {
                 </div>
               })}
             </div>
-            <div className="grid grid-cols-2 gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-20">
               <div className="bg-gray-100 rounded-md p-7 mt-4 space-y-2">
                 <h1 className="text-gray-800 font-bold text-xl">Delivery Info </h1>
                 <div className="flex flex-col space-y-1">

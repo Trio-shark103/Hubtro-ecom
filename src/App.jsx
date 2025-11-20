@@ -10,10 +10,12 @@ import axios from 'axios'
 import Footer from './components/Footer'
 import SingleProduct from './pages/SingleProduct'
 import CategoryProduct from './pages/CategoryProduct'
+import { useCart } from './context/CartContext'
 
 const App = () => {
   const [location, setLocation] = useState()
   const [openDropdown, setOpenDropdown] = useState(false)
+  const {cartItem, setCartItem} = useCart()
 
   const getLocation = async()=>{
     navigator.geolocation.getCurrentPosition(async pos =>{
@@ -36,6 +38,21 @@ const App = () => {
   useEffect(() => {
     getLocation()
   }, [])
+
+
+  // Load cart from local storage on initial render
+  useEffect(()=>{
+    const storedCart = localStorage.getItem('cartItem')
+    if(storedCart){
+      setCartItem(JSON.parse(storedCart))
+    }
+  }, []);
+
+  // SAVE CART TO LOCAL STORAGE WHENEVER IT CHANGES
+  useEffect(()=>{
+    localStorage.setItem('cartItem', JSON.stringify(cartItem))
+  },[cartItem]) 
+
   return (
     <BrowserRouter>
     <Navbar location={location} getLocation={getLocation} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown}/>
